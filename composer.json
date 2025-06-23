@@ -1,0 +1,16 @@
+{
+    "name": "alexa/ad-meeting-calendar",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Alexa\\AdMeetingCalendar\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "gaganalexa",
+            "email": "202310537@fit.edu.ph"
+        }
+    ],
+    "require": {}
+}
