@@ -8,7 +8,7 @@ require 'vendor/autoload.php';
 require 'bootstrap.php';
 
 // 3) envSetter
-$typeConfig = require_once UTILS_PATH . 'envSetter.util.php';
+$typeConfig = require_once __DIR__ . '/envSetter.util.php';
 
 // Prepare config array
 $pgConfig = [
