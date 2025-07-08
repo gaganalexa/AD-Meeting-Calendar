@@ -64,7 +64,7 @@ foreach ($tables as $table) {
 
 // ——— Seeding users ———
 echo "Seeding users…\n";
-$users = require_once BASE_PATH . '/staticData/dummies/users.staticDatas.php';
+$users = require_once BASE_PATH . '/staticDatas/dummies/users.staticData.php';
 
 $stmt = $pdo->prepare("
     INSERT INTO users (username, role, first_name, last_name, password)
