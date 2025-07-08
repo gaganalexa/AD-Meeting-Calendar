@@ -19,12 +19,8 @@ $pgConfig = [
     'pass' => $typeConfig['pg_pass'],
 ];
 
-
-
-
-// ——— Connect to PostgreSQL ———
+// Connect to PostgreSQL
 $dsn = "pgsql:host={$pgConfig['host']};port={$pgConfig['port']};dbname={$pgConfig['db']}";
-
 try {
     $pdo = new PDO($dsn, $pgConfig['user'], $pgConfig['pass'], [
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
@@ -35,7 +31,7 @@ try {
     exit(1);
 }
 
-// ——— Apply schemas ———
+// ——— Optional: Apply schemas (if you want to reset first, otherwise comment this block) ———
 $modelFiles = [
     'user.model.sql',
     'meeting.model.sql',
@@ -44,13 +40,13 @@ $modelFiles = [
 ];
 
 foreach ($modelFiles as $modelFile) {
-$path = __DIR__ . "/../database/{$modelFile}";
+    $path = __DIR__ . "/../database/{$modelFile}";
     echo "Applying schema from {$path}…\n";
 
     $sql = file_get_contents($path);
 
     if ($sql === false) {
-        throw new RuntimeException("Could not read {$path}");
+        throw new RuntimeException("❌ Could not read {$path}");
     } else {
         echo "✅ Creation Success from {$path}\n";
     }
@@ -58,14 +54,32 @@ $path = __DIR__ . "/../database/{$modelFile}";
     $pdo->exec($sql);
 }
 
-// ——— TRUNCATE tables ———
+// ——— Truncate tables ———
 echo "Truncating tables…\n";
-
 $tables = ['meeting_users', 'tasks', 'meetings', 'users'];
-
 foreach ($tables as $table) {
     $pdo->exec("TRUNCATE TABLE {$table} RESTART IDENTITY CASCADE;");
     echo "✅ Truncated table: {$table}\n";
 }
 
-echo "🎉 Reset Completed\n"; 
+// ——— Seeding users ———
+echo "Seeding users…\n";
+$users = require_once BASE_PATH . '/staticData/dummies/users.staticData.php';
+
+$stmt = $pdo->prepare("
+    INSERT INTO users (username, role, first_name, last_name, password)
+    VALUES (:username, :role, :fn, :ln, :pw)
+");
+
+foreach ($users as $u) {
+    $stmt->execute([
+        ':username' => $u['username'],
+        ':role' => $u['role'],
+        ':fn' => $u['first_name'],
+        ':ln' => $u['last_name'],
+        ':pw' => password_hash($u['password'], PASSWORD_DEFAULT),
+    ]);
+}
+echo "✅ Seeded users\n";
+
+echo "🎉 Seeder Complete\n";
