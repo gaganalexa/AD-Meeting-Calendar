@@ -5,14 +5,14 @@ function navHeader(array $navList, ?array $user = null): void
 {
     ?>
     <header>
-        <nav class="bg-gray-300 dark:bg-gray-500 px-4 lg:px-6 py-2.5 border-gray-200">
-            <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
-                <a href="/index.php" class="flex items-center">
-                    <img src="/assets/img/nyebe_white.png" class="mr-3 h-6 sm:h-9" alt="Nyebe Logo" />
-                    <span class="self-center font-semibold dark:text-white text-lg whitespace-nowrap">
-                        <span class="font-black">NYEBE:</span> AD-TaskManager
-                    </span>
-                </a>
+    <nav class="bg-black px-4 lg:px-6 py-2.5 border-black">
+        <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
+            <a href="/index.php" class="flex items-center">
+                <img src="/assets/img/nyebe_white.png" class="mr-3 h-6 sm:h-9" alt="Nyebe Logo" />
+                <span class="self-center font-semibold text-white text-lg whitespace-nowrap">
+                    <span class="text-white">AMG:</span> Task Manager
+                </span>
+            </a>
 
                 <div class="flex items-center lg:order-2">
                     <?php if ($user): ?>
@@ -32,11 +32,12 @@ function navHeader(array $navList, ?array $user = null): void
                         </a>
                     <?php else: ?>
                         <a href="/pages/login/index.php"
-                            class="bg-blue-600 hover:bg-blue-700 mr-4 px-4 py-2 rounded text-white">
+                            class="bg-blue-800 hover:bg-blue-900 mr-4 px-4 py-2 rounded text-white">
                             Log in
                         </a>
+
                         <a href="/pages/signup/index.php"
-                            class="bg-gray-200 hover:bg-gray-100 mr-4 px-4 py-2 rounded text-white">
+                            class="bg-gray-200 hover:bg-gray-100 mr-4 px-4 py-2 rounded text-black">
                             Sign Up
                         </a>
                     <?php endif; ?>
@@ -58,7 +59,7 @@ function navHeader(array $navList, ?array $user = null): void
                                 ?>
                                 <li>
                                     <a href="<?= htmlspecialchars($nav['link']) ?>"
-                                        class="block hover:bg-gray-200 py-2 pr-4 pl-3 rounded text-gray-800 dark:text-white">
+                                        class="block bg-white hover:bg-gray-200 dark:bg-white dark:hover:bg-gray-200 py-2 pr-4 pl-3 rounded text-gray-800 dark:text-gray-800">
                                         <?= htmlspecialchars($nav['label']) ?>
                                     </a>
                                 </li>
