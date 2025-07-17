@@ -14,15 +14,18 @@ renderMainLayout(
         require_once STATICDATAS_PATH . "/feature.staticData.php";
         ?>
     <!-- Hero Section -->
-    <section class="flex flex-col justify-center items-center w-full h-[95dvh] max-h-[1080px] hero">
-        <h2 class="font-black text-4xl">
-            Stay on Track. Collaborate. Conquer Your Tasks.
+    <section class="relative w-full min-h-screen bg-[url('/assets/img/meeting-bg.avif')] bg-cover bg-center bg-no-repeat flex justify-center items-center">
+    <!-- Blurred Overlay Box -->
+    <div class="backdrop-blur-md bg-white/30 p-8 rounded-lg max-w-3xl text-center">
+        <h2 class="font-black text-4xl text-black">
+            Organize Meetings. Sync Teams. Streamline Your Schedule.
         </h2>
-        <h2 class="font-black text-gray-500 text-2xl text-center">
-            AD-TaskManager brings designers, QAs, coders, and leaders together in a seamless workflow. From concept to
-            completion, every step is transparent, accountable, and under your control.
+        <h2 class="font-black text-black text-2xl mt-4">
+           Simplifies team coordination with an intuitive interface for scheduling, tracking, and managing meetings — all in one place.
         </h2>
-    </section>
+    </div>
+</section>
+
 
     <!-- Feature Section -->
     <section class="flex justify-center my-24 w-full">
